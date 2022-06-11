@@ -39,9 +39,6 @@ export default function AddItem(){
             <Radio label = "Completed?" toggle defaultChecked onClick={handleToggleChange}> </Radio>
             <br/>
             <br/>
-            <Calendar />
-            <br/>
-            <br/>
             <Button type="submit" style={{backgroundColor: "white"}} onClick={() => handleOnClick()}>Submit</Button>
          </div>
         </>

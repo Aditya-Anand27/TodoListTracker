@@ -6,8 +6,8 @@ export default function TopMenu() {
     const [activeItem, setactiveItem] = useState("home");
       return (
         <Menu stackable>
-          <Menu.Item active={activeItem === 'home'} name="home" onClick={() => setactiveItem("Today's Activities")}>
-            <Icon  to="/"
+          <Menu.Item active={activeItem === 'home'} name="home" to="/homepage" as = {Link} onClick={() => setactiveItem("home")}>
+            <Icon  
                    size='large'  name='home'/>
           </Menu.Item>
         <Menu.Menu position="right">

@@ -11,6 +11,8 @@ builder.Services.AddDbContext<TodoContext>(opt =>
     opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDbContext<TodoNotesContext>(opt =>
     opt.UseInMemoryDatabase("TodoListNotes"));
+builder.Services.AddDbContext<TodoSignInContext>(opt =>
+    opt.UseInMemoryDatabase("TodoListSignin"));
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     {
         builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();

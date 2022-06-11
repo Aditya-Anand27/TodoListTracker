@@ -6,7 +6,7 @@ import agent from '../agents/agent';
 
 
 
-export default function AddItem(props){
+export default function AddItem(){
 
     const [value, setvalue] = useState("");
     const [toggle, settoggle] = useState(true);
