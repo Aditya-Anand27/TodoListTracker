@@ -1,12 +1,13 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace my_new_app.Models
 {
-    public class TodoSignIn
+    public class TodoSignIn : IdentityUser
     {
      
-        public int Id{get; set;}
-        public string? UserName {get; set;}
+        public string? DisplayName{get; set;}
 
-        public string? Password {get; set;}
+        public string? Bio{get; set;}
    
     }
 }

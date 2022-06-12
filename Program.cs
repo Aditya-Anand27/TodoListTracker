@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using my_new_app.Models;
 
@@ -13,6 +14,13 @@ builder.Services.AddDbContext<TodoNotesContext>(opt =>
     opt.UseInMemoryDatabase("TodoListNotes"));
 builder.Services.AddDbContext<TodoSignInContext>(opt =>
     opt.UseInMemoryDatabase("TodoListSignin"));
+builder.Services.AddIdentityCore<TodoSignIn>(opt => {
+    opt.Password.RequireNonAlphanumeric = false;
+}).AddEntityFrameworkStores<TodoSignInContext>()
+.AddSignInManager<SignInManager<TodoSignIn>>();
+
+builder.Services.AddAuthentication();
+
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     {
         builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
