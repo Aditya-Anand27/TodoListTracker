@@ -1,6 +1,11 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using my_new_app.Models;
+using my_new_app.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +24,20 @@ builder.Services.AddIdentityCore<TodoSignIn>(opt => {
 }).AddEntityFrameworkStores<TodoSignInContext>()
 .AddSignInManager<SignInManager<TodoSignIn>>();
 
-builder.Services.AddAuthentication();
+
+var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Super secret key"));
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => 
+{
+    opt.TokenValidationParameters = new TokenValidationParameters{
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = key,
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+builder.Services.AddScoped<TokenService>();
+
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     {
@@ -40,6 +58,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseCors("corsapp");
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
