@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { Menu, Icon } from 'semantic-ui-react'
 
 export default function TopMenu() {  
-    const [activeItem, setactiveItem] = useState("home");
+    const [activeItem, setactiveItem] = useState("login");
       return (
         <Menu stackable>
-          <Menu.Item active={activeItem === 'home'} name="home" to="/homepage" as = {Link} onClick={() => setactiveItem("home")}>
+          <Menu.Item active={activeItem === 'login'} name="login" to="/login" as = {Link} onClick={() => setactiveItem("login")}>
             <Icon  
                    size='large'  name='home'/>
           </Menu.Item>

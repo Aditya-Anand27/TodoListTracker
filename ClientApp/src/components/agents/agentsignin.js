@@ -14,11 +14,9 @@ const requests = {
 }
 
 const Activities = {
-    list: () => requests.get("/todosignins"),
-    read: (id) => requests.get(`/todosignins/${id}`),
-    create: (act) => requests.post(`/todosignins`, act),
-    update: (id, act) => requests.put(`/todosignins/${id}`, act),
-    del: (id) => requests.del(`/todosignins/${id}`),
+    current: () => requests.get("/account"),
+    login: (user) => requests.post(`/account/login`, user),
+    register: (user) => requests.post(`/account/register`, user),
 }
 
 const agent = {
