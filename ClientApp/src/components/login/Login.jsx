@@ -1,14 +1,17 @@
 import { ErrorMessage, Formik } from 'formik';
 import React from 'react';
 import { Button, Form, Label } from 'semantic-ui-react';
-import UserStore from '../../Helpers/loginhelper';
+import { useStore } from '../../Helpers/loginhelper';
 import MyTextInput from './MyTextInput';
+import { observer } from "mobx-react";
+import { withRouter } from 'react-router-dom'    
 
-export default function Login(){
-    let userstore = new UserStore;
+
+export default observer(function Login(){
+    const{userStore} = useStore();
     return(
       <Formik initialValues={{email: "", password: "", error: null}}
-      onSubmit = {(values, {setErrors}) => userstore.login(values).catch(error => setErrors({error: "Invalid Email or Pass"}))}
+      onSubmit = {(values, {setErrors}) => userStore.login(values).catch(error => setErrors({error: "Invalid Email or Pass"}))}
       >
         {({handleSubmit, isSubmitting, errors}) => (
         <Form className="ui form" onSubmit={handleSubmit} >
@@ -26,4 +29,4 @@ export default function Login(){
   </Form>
     )}
       </Formik>
-)}
+)})
