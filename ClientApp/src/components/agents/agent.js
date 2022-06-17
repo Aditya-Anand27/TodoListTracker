@@ -4,6 +4,14 @@ import axios from 'axios';
 
 axios.defaults.baseURL = "https://localhost:7205/api";
 
+axios.interceptors.request.use(config => {
+    const token = store.commonStore.token;
+    if(token){
+        config.headers.Authorization = `Bearer ${token}`
+    }
+    return config;
+})
+
 const responseBody = (response) => response.data;
 
 const requests = {

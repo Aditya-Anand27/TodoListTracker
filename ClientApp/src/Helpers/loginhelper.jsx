@@ -30,6 +30,22 @@ export default class UserStore{
             throw error;
         }
     }
+
+    logout = () =>{
+        store.commonStore.setToken(null);
+        window.localStorage.removeItem("jwt");
+        this.user= null;
+        History.push('/');
+    }
+
+    getUser = async () => {
+        try{
+            const user = await agent.Activities.current();
+            runInAction(() => this.user = user);
+        } catch(error){
+            console.log(error);
+        }
+    }
 }
 
 export const store = {
