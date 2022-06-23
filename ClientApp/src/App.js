@@ -10,6 +10,7 @@ import Login from './components/login/Login';
 import HomePage from './Homepage';
 import { observer } from "mobx-react";
 import { useStore } from './Helpers/loginhelper';
+import ModalContainer from './Helpers/ModalContainer';
 
 export default observer(function App() {
 
@@ -29,6 +30,7 @@ export default observer(function App() {
     if(!commonStore.appLoaded) return <Loader/>
     return (
         <>
+        <ModalContainer/>
         <TopMenu/>
         <Route exact path='/today' component={MainPage} />
         <Route exact path='/incomplete' component={MainPageInc} />

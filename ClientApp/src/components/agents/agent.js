@@ -1,11 +1,14 @@
 ﻿/* eslint-disable */ 
 
 import axios from 'axios';
+import commonStore from '../../Helpers/loginhelper';
+
 
 axios.defaults.baseURL = "https://localhost:7205/api";
 
+
 axios.interceptors.request.use(config => {
-    const token = store.commonStore.token;
+    const token = commonStore.token;
     if(token){
         config.headers.Authorization = `Bearer ${token}`
     }
